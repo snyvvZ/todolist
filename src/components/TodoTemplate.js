@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledTodoTemplate = styled.div`
+const StyledTemplate = styled.div`
   width: 512px;
   height: 768px;
 
@@ -19,7 +19,7 @@ const StyledTodoTemplate = styled.div`
 `;
 
 const TodoTemplate = ({ children }) => {
-  return <StyledTodoTemplate>{children}</StyledTodoTemplate>;
+  return <StyledTemplate>{children}</StyledTemplate>;
 };
 
 export default TodoTemplate;
