@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { ThemeProvider, css } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import variables from "./styles/variables";
 import mixins from "./styles/mixins";
 import GlobalStyle from "./styles/GlobalStyle";
@@ -18,6 +18,7 @@ const StyledContainer = styled.section`
   min-width: 1280px;
   background-color: ${({theme}) => theme.backgroundColor};
   color: ${({theme}) => theme.fontColor};
+  transition: background-color ease-in .25s;
 `;
 
 const StyledTheme = styled.div`
@@ -31,31 +32,27 @@ const StyledTheme = styled.div`
     height: 36px;
     position: relative;
     color: ${({theme})=> theme.fontColor};
+    background-color: ${({theme})=> theme.accentColor};
     border-radius: 36px;
-    background: blue;
     cursor: pointer;
 
     &::before {
       display: block;
-      width: 26px;
-      height: 26px;
+      width: 30px;
+      height: 30px;
       position: absolute;
-      left: 5px;
-      top: 5px;
+      left: 3px;
+      top: 3px;
       border-radius: 26px;
       background-color: ${variables.white};
-      box-shadow: 0 0 5px rgba(0,0,.5);
+      box-shadow: 0 2px 6px rgba(0,0,0,.3);
       content: '';
+      transition: transform cubic-bezier(.98,.11,.62,1.39) .15s;
     }
 
-    ${props => props.mode === 'dark' && // FIXME 적용 안된다 ing
-    css`
-      background-color: red;
-
-      &::before {
-        transform: translateX(100%);
-      }
-    `}
+    > span {
+      ${mixins.blind};
+    }
   }
 `
 
@@ -68,10 +65,7 @@ const App = () => {
       : setThemeMode("light")
   }
 
-  console.log(themeMode);
-
   return (
-    <>
     <ThemeProvider
         theme={
           themeMode === "light"
@@ -88,12 +82,11 @@ const App = () => {
             <StyledTheme>
               <input type="checkbox" id="themeLabel" onChange={changeTheme} />
               <label 
-                htmlFor="themeLabel" 
-                mode={themeMode}
-                huge="true"
-                aria-label={`Change ${themeMode === 'light' ? 'Dark' : 'Light'} Mode`}
+                htmlFor="themeLabel"
+                theme={themeMode}
+                aria-label={`${themeMode === 'light' ? '다크' : '기본'}모드로 변경하기`}
               >
-                
+                <span>모드 변경</span>
               </label>
             </StyledTheme>
           </Contents>
@@ -101,7 +94,6 @@ const App = () => {
           <Footer />
         </StyledContainer>
       </ThemeProvider>
-    </>
   );
 };
 
