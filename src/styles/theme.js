@@ -7,7 +7,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-  backgroundColor: variables.grayDark,
+  backgroundColor: variables.gray900,
   fontColor: variables.white,
   accentColor: variables.accentDark,
 };
