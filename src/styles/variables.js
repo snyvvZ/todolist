@@ -3,7 +3,7 @@ export const variables = {
   black: '#000',
   white: '#fff',
   grayDark: '#111',
-  accentDark: 'yellow',
+  accentDark: 'orange',
   accentLight: '#0078ff',
 };
 
